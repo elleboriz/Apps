@@ -1,0 +1,39 @@
+/* general */
+input{
+    box-shadow: none!important;
+}
+
+/* body */
+
+body{
+    background-color: #f1f1f1;
+}
+
+
+/* header */
+/* navbar */
+.navbar{
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+.navbar .navbar-brand{
+    font-size: 30px;
+}
+.navbar-toggler{
+    border: none;
+}
+.input-group{
+    
+    max-width: 500px;
+}
+.input-group input,button{
+    border-radius: 0!important;
+}
+
+/* main  */
+.sidebar{
+    height: 100vh;
+    border-right: 1px solid #ddd;
+}
+

@@ -1,0 +1,247 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/63844a3847.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Bootstrap Example</title>
+
+  </head>
+  <body>
+    <header>
+    <!-- Example Code -->
+        <nav class="navbar navbar-expand-lg ">
+              <div class="container-fluid">
+                
+                    <a class="navbar-brand " href="#">
+                            <img src="https://m.media-amazon.com/images/I/71iTVwQ2dcL.png" alt="Logo" width="35"  class="d-inline-block align-text-top">
+                            StoryTimes
+                    </a>
+                
+                    <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                         <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="offcanvas offcanvas-end text-bg-dark text-white" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                          <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                          </div>
+                          <div class="offcanvas-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search story here.." aria-label="search-bar" aria-describedby="button-addon2">
+                                <button class="btn btn-primary" type="button" id="button-addon2"><i class="fa fa-magnifying-glass"></i> Search</button>
+                            </div>
+                            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                                
+
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Categories
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                      <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                  </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Refrences
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#">Action</a></li>
+                                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                                      <li>
+                                        <hr class="dropdown-divider">
+                                      </li>
+                                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                  </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href="#">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" href="#">About</a>
+                                </li>
+                                
+                            </ul>
+                              
+                            <ul class="navbar-nav justify-content-end ">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">SignUp</a>
+                                </li>
+                            </ul>
+                            
+                           
+                                
+                          </div>
+                    </div>
+              </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <!--Sidebar-->
+                <div class="sidebar col-lg-3">sidebar</div>
+
+                <!--Sidebar-->
+                <div class="content col-lg-9">
+                    <div class=" row ">
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 p-3">
+                            <div class="card">
+                                <img src="https://via.placeholder.com/200x100?text=Story+Image" class="card-img-top" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">Story title</h5>
+                                    <p class="card-text">Some quick description text to build intrest on the story title and make up the bulk of the card's content.</p>
+                                    <div class="col-12">
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-face-smile"></i> Impressions</a>
+                                        <a href="#" class="btn btn-outline-secondary "><i class="fa fa-arrow-right-to-bracket"></i> Read story</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        
+                    </div>
+                </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    <footer></footer>
+    </body>
+
+    
+    <!-- End Example Code -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="{{ url_for('static',filename='main.js') }}"></script>
+  </body>
+</html>
