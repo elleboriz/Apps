@@ -4,7 +4,8 @@
 #Tools Used
 
 FRONT END
--vanilla javascript
+-javascript
+-css
 -Bootstrap
 
 
