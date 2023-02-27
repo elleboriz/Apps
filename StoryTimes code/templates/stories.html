@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+<!--title-->
+{% block title %}
+    stories
+{% endblock %}
+
+{% block content %}
+    <main>
+
+       <div class="container-fluid">
+           <div class="row">
+
+               <div class="sidebar col-lg-2"></div>
+
+
+               <div class="stories col-lg-8">
+                   <h1 class="pt-5 m-3 display-2">All Stories..</h1>
+                    <br>
+<!--                   <--! Iterating through database to display each story-->
+                {% for story in stories%}
+
+                            <div class="card  m-3">
+                                <img src="{{ story.img }}" class="card-img-top story-img" alt="Story Image">
+                                <div class="card-body">
+                                    <h5 class="card-title story-title">{{ story.title }}</h5>
+                                    <p class="card-text story-category">Category: {{ story.category }}</p>
+                                    <p class="card-text story-body">{{ story.body }}</p>
+                                    <div class="col-12">
+                                      <div class="">
+                                        <div class="reaction d-inline-block">
+                                          <button class="btn border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="like">
+                                            <i class="fa fa-thumbs-up fs-2 text-primary"></i></button>
+                                          <button class="btn border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="dislike">
+                                            <i class="fa fa-thumbs-down fs-2 text-danger"></i></button>
+                                        </div>
+                                        <div class="comments d-inline-block">
+                                          <button class="btn btn-outline-secondary" >
+                                            Add Comment <i class="fa fa-comment"></i>
+                                          </button>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                   {% endfor %}
+               </div>
+
+
+               <div class="sidebar col-lg-2"></div>
+
+           </div>
+       </div>
+
+    </main>
+{% endblock %}
+
+<!--& Footer-->
+
+
