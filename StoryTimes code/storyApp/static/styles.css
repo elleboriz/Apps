@@ -1,0 +1,57 @@
+/* general */
+input{
+    box-shadow: none!important;
+}
+
+.fa-thumbs-up:active, .fa-thumbs-down:active{
+    opacity: 50%;
+}
+
+/* body */
+
+body{
+    background-color: #f3f3f3;
+}
+
+
+/* header */
+/* navbar */
+.navbar{
+    background-color: #fdfdfd;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+.navbar .navbar-brand{
+    font-size: 30px;
+}
+.navbar-toggler{
+    border: none;
+}
+.input-group{
+    
+    max-width: 500px;
+}
+.input-group input,button{
+    border-radius: 0!important;
+}
+
+/* main  */
+
+.stories .card{
+    border: none;
+    /* box-shadow: 0 0 2px; */
+    background-color: #fdfdfd;
+}
+
+.story-title{
+    text-transform: capitalize;
+    font-size: 2rem;
+}
+.story-body{
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+}
+.story-body::first-letter{
+    font-size: 4rem;
+    font-style: italic;
+}
