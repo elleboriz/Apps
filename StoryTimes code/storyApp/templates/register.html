@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+<!--title-->
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+    <div class="form container-fluid ">
+        <h2 class="text-center text-primary  mb-4">Register an Account</h2>
+        <form method="post" class="form-register border p-4 rounded shadow">
+            {{ form.username.label() }}
+            {{ form.username(class="form-control" , placeholder='Enter a username') }}
+
+            {{form.email.label() }}
+            {{ form.email(class="form-control" , placeholder='Enter your Email') }}
+
+            {{form.password.label() }}
+            {{ form.password(class="form-control" , placeholder='Enter your Password') }}
+
+            {{form.password_confirm.label() }}
+            {{ form.password_confirm(class="form-control" , placeholder='Confirm your Password') }}
+
+            {{form.submit(class="btn btn-block btn-lg  btn-outline-primary",id="register-btn")  }}
+        </form>
+    </div>
+{% endblock %}
