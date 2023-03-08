@@ -28,15 +28,18 @@
                       {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title story-title">{{ story.title }}</h5>
-                                    <p class="card-text story-category">Moral of Story: {{ story.category }}</p>
+
+                                    <p class="card-text story-category text-capitalize">Category:  {{ story.category }}</p>
                                     <p class="card-text story-body">{{ story.body }}</p>
+                                    <h3 class="card-title text-capitalize fw-lighter text-primary pt-3"><span class="text-primary fw-normal">Moral of Story: </span> {{ story.description }}</h3>
                                     <div class="col-12">
+                                      <hr>
                                       <div class="">
                                         <div class="reaction d-inline-block">
                                           <button class="btn border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="like">
-                                            <i class="fa fa-thumbs-up fs-2 text-primary"></i></button>
+                                            <i class="fa fa-thumbs-up fs-2 text-primary"></i> like</button>
                                           <button class="btn border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="dislike">
-                                            <i class="fa fa-thumbs-down fs-2 text-danger"></i></button>
+                                            <i class="fa fa-thumbs-down fs-2 text-danger"></i> dislike</button>
                                         </div>
                                         <div class="comments d-inline-block">
                                           <button class="btn btn-outline-secondary" >
@@ -57,7 +60,7 @@
 
            </div>
        </div>
-
+       </div>
     </main>
 {% endblock %}
 
