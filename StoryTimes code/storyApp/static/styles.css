@@ -55,3 +55,19 @@ body{
     font-size: 4rem;
     font-style: italic;
 }
+
+/* form style*/
+
+.form{
+
+    margin-top:100px;
+    max-width:600px;
+    margin-bottom:1rem;
+}
+.form .form-control{
+
+    margin-bottom:1rem;
+}
+#register-btn{
+    width:100%;
+}
