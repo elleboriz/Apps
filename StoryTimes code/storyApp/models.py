@@ -1,4 +1,4 @@
-from storyApp import db
+from storyApp import db , bcrypt
 from flask_bcrypt import Bcrypt
 
 
@@ -8,6 +8,14 @@ class User(db.Model):
     email_address = db.Column(db.String(length=45) , nullable=False,unique=True)
     password_hash = db.Column(db.String(length=60) , nullable=False)
     uploaded_stories = db.relationship("Story", backref="uploaded_by_user" , lazy=True)
+
+    @property
+    def password(self):
+        return self.password
+
+    @password.setter
+    def password(self,password_to_encrypt):
+        self.password_hash = bcrypt.generate_password_hash(password_to_encrypt)
 
 
 class Story(db.Model):
