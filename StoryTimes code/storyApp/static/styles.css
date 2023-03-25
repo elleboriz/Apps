@@ -1,6 +1,11 @@
 /* general */
-input{
+input ,.form-control{
     box-shadow: none!important;
+}
+
+
+form label{
+    margin-left: 5px;
 }
 
 .fa-thumbs-up:active, .fa-thumbs-down:active{
@@ -68,6 +73,9 @@ body{
 
     margin-bottom:1rem;
 }
-#register-btn{
+#fullwidth-btn{
     width:100%;
+}
+.form-div,form-alert{
+    margin-top:-4rem;
 }
