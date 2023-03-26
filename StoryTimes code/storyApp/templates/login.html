@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+<!--title-->
+{% block title %}
+    login
+{% endblock %}
+
+{% block content%}
+<div class="form container-fluid ">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+             {% if messages %}
+                {% for category, message in messages %}
+                    <div class="form-alert alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                      <strong>Sorry!! </strong>{{message}}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor%}
+             {% endif%}
+        {% endwith %}
+    <div class="form-div">
+    <h2 class="text-center fw-semibold  mb-4">Login Your Account</h2>
+        <form method="post" class="form-register border p-4 rounded shadow">
+            {{ form.hidden_tag() }}
+
+            {{ form.username.label() }}
+            {{ form.username(class="form-control" , placeholder='Enter a username') }}
+
+            {{form.password.label() }}
+            {{ form.password(class="form-control" , placeholder='Enter your Password') }}
+
+
+            {{form.submit(class="btn btn-block btn-lg  btn-primary",id="fullwidth-btn")  }}
+            <p class="pt-3 text-center">Dont have an account <a  href="{{url_for('register_page')}}">SignUp</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}
