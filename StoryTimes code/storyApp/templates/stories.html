@@ -5,29 +5,100 @@
 {% endblock %}
 
 {% block content %}
-    <main>
+
 
        <div class="container-fluid">
+           {% with messages = get_flashed_messages(with_categories=true) %}
+             {% if messages %}
+                {% for category, message in messages %}
+                <div  class="toast align-items-center text-bg-{{ category }} border-0 show mt-3" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      {{message}}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+                {% endfor%}
+             {% endif%}
+        {% endwith %}
+
            <div class="row">
 
-               <div class="sidebar col-lg-2"></div>
+               <div class="sidebar col-lg-3 ">
+                  <!-- Button trigger modal -->
+                      <div class="d-flex fixed-top" id="modalbtn">
+                        <button type="button" class="btn btn-lg btn-primary  mt-3  rounded shadow stick" data-bs-toggle="modal" data-bs-target="#add_story">
+                          Add New Story
+                        </button>
+                        <a type="button" class="btn btn-outline-secondary btn-lg mt-3 rounded shadow stick" href="{{url_for('addstory')}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Use Full Window in new Tab"><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i></a>
+                      </div>  
+                        <!-- Modal -->
+                        <div class="modal fade" id="add_story" tabindex="-1" aria-labelledby="add_storyLabel" aria-hidden="true">
+                          <div class="modal-dialog" >
+                            <div class="modal-content" id="addstory_form-modal-content">
+                              <div class="modal-header">
+                                <div class="">
+                                <h1 class="modal-title fs-5" id="add_storyLabel">Add New story</h1>
+                                <a type="button" class="btn btn-outline-secondary btn-sm mt-3 rounded " href="{{url_for('addstory')}}" target="_blank" ><i class="fa-sharp fa-solid fa-arrow-up-right-from-square"></i> Use Full Window</a>
+                                </div>  
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              
+                                <form method="post" class=" border p-4 ">
+                                  <div class="modal-body " >
+                                  {{ addstory_form.hidden_tag() }}
+                      
+                                  {{ addstory_form.title.label() }}
+                                  {{ addstory_form.title(class="form-control" , placeholder='Enter story title') }}
+                      
+                                  {{ addstory_form.description.label() }}
+                                  {{ addstory_form.description(class="form-control" , placeholder='Give a brief description') }}
+                      
+                                  
+                                  {{ addstory_form.body.label() }}
+                                  {{ addstory_form.body(class="form-control" , placeholder='Enter story body',rows='10') }}
+                              
+                      
+                      
+                                  
+                                  {{ addstory_form.category.label() }}
+                                  {{ addstory_form.category(class="form-select" ,id='select_category' ) }}
+                      
+                                  {{ addstory_form.image.label() }}
+                                  {{ addstory_form.image(class="form-control" , placeholder='image') }}
+                      
+                                  {{addstory_form.submit(class="btn btn-block btn-lg  btn-primary",id="fullwidth-btn")}}
+                                </div>
+                              </form>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger text-center" data-bs-dismiss="modal">Cancel</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+        
+               </div>
 
-
+                
                <div class="stories col-lg-8">
-                   <h1 class="pt-5 m-3 display-2">All Stories..</h1>
-                    <hr>
+                
+                
+                
+                   <h1 class=" m-3 fs-4 text-decoration-underline">ALL STORIES..</h1>
                <!--- Iterating through database to display each story-->
                 {% for story in stories%}
                   {% if not story.img %}
                          
                   <div class="card  m-3">
+                    <h5 class="card-title story-title p-2 text-center">{{ story.title }}</h5>
                     <img src= "{{ url_for('static',filename='placeholderO.png') }}" class="card-img-top story-img" alt="Story Image">
                     {% elif  story.img%}
                     <div class="card  m-3">
                       <img src= "{{ story.img }}" class="card-img-top story-img" alt="Story Image">
                       {% endif %}
                                 <div class="card-body">
-                                    <h5 class="card-title story-title">{{ story.title }}</h5>
+                                    
 
                                     <p class="card-text story-category text-capitalize">Category:  {{ story.category }}</p>
                                     <p class="card-text story-body">{{ story.body }}</p>
@@ -35,33 +106,65 @@
                                     <div class="col-12">
                                       <hr>
                                       <div class="">
-                                        <div class="reaction d-inline-block">
-                                          <button class="btn border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="like">
-                                            <i class="fa fa-thumbs-up fs-2 text-primary"></i> like</button>
-                                          <button class="btn border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="dislike">
-                                            <i class="fa fa-thumbs-down fs-2 text-danger"></i> dislike</button>
-                                        </div>
+                                        <div class="reaction d-flex justify-content-between">
+
+                                        {% if current_user.is_authenticated %}
+                                        <form method="POST">
+                                            {{ like.hidden_tag() }}
+                                            <button class=" bg-primary border-0 rounded text-white " data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="like"  value="like" ><i class="fa fa-thumbs-up fs-3 text-white"></i> 
+                                              {{ like.submit(class='btn text-white')}}
+                                              {{ story.likes }} </button> 
+                                        </form>
+                                       
                                         <div class="comments d-inline-block">
                                           <button class="btn btn-outline-secondary" >
                                             Add Comment <i class="fa fa-comment"></i>
                                           </button>
                                         </div>
+                                        
+                                        <form method="POST">
+                                          {{ deslike.hidden_tag() }}
+                                          <button class=" bg-danger border-0 rounded text-white" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="deslike"  value="deslike" ><i class="fa fa-thumbs-down fs-3 text-white"></i> 
+                                            {{ deslike.submit(class='btn text-white')}}
+                                            {{ story.deslikes }} </button> 
+                                        </form>  
+
+                                        <!-- Like btn conditions-->
+
+                                        {% elif not current_user.is_authenticated  %}
+                                        
+                                          
+                                          <button class=" bg-primary border-0 rounded text-white " data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="like"  value="like" ><i class="fa fa-thumbs-up fs-3 text-white"></i> 
+                                            {{ story.likes }} </button> 
+                                      
+                                     
+                                      <div class="comments d-inline-block">
+                                        <button class="btn btn-outline-secondary" >
+                                          Add Comment <i class="fa fa-comment"></i>
+                                        </button>
+                                      </div>
+                                      
+                                        
+                                        <button class=" bg-danger border-0 rounded text-white " data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="deslike"  value="deslike" ><i class="fa fa-thumbs-down fs-3 text-white"></i> 
+                                          {{ story.deslikes }} </button> 
+                                      
+                                        {% endif %}
                                       </div>
 
+                                      </div>
                                     </div>
                                 </div>
-                    </div>
                    {% endfor %}
                   </div>
 
 
              
-               <div class="sidebar col-lg-2"></div>
+               <div class="sidebar col-lg-1"></div>
 
            </div>
        </div>
        </div>
-    </main>
+
 {% endblock %}
 
 <!--& Footer-->
