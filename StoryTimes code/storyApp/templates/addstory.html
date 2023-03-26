@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content%}
-<div class="form container-fluid ">
+<div class="container-fluid " id="fullwidth-add_storypage">
     {% with messages = get_flashed_messages(with_categories=true) %}
              {% if messages %}
                 {% for category, message in messages %}
@@ -18,32 +18,32 @@
                 {% endfor%}
              {% endif%}
         {% endwith %}
-    <div class="form-div">
+    
     <h2 class="text-center fw-semibold  mb-4">Add story</h2>
-        <form method="post" class="form-register border p-4 rounded shadow">
-            {{ form.hidden_tag() }}
+        <form method="post" class=" border p-4 rounded shadow">
+            {{ addstory_form.hidden_tag() }}
 
-            {{ form.title.label() }}
-            {{ form.title(class="form-control" , placeholder='Enter story title') }}
+            {{ addstory_form.title.label() }}
+            {{ addstory_form.title(class="form-control " , placeholder='Enter story title') }}
 
-            {{ form.description.label() }}
-            {{ form.description(class="form-control" , placeholder='Give a brief description') }}
+            {{ addstory_form.description.label() }}
+            {{ addstory_form.description(class="form-control" , placeholder='Give a brief description') }}
 
             
-            {{ form.body.label() }}
-            {{ form.body(class="form-control" , placeholder='Enter story body',rows='10') }}
+            {{ addstory_form.body.label() }}
+            {{ addstory_form.body(class="form-control" , placeholder='Enter story body',rows='10') }}
         
 
 
             
-            {{ form.category.label() }}
-            {{ form.category(class="form-select" ,id='select_category' ) }}
+            {{ addstory_form.category.label() }}
+            {{ addstory_form.category(class="form-select  mb-4 " ,id='select_category' ) }}
 
-            {{ form.image.label() }}
-            {{ form.image(class="form-control" , placeholder='image') }}
+            {{ addstory_form.image.label() }}
+            {{ addstory_form.image(class="form-control" , placeholder='image') }}
 
-            {{form.submit(class="btn btn-block btn-lg  btn-primary",id="fullwidth-btn")}}
+            {{ addstory_form.submit(class="btn btn-block btn-lg  btn-primary mt-4",id="fullwidth-btn") }}
         </form>
-    </div>
+    
 </div>
 {% endblock %}
