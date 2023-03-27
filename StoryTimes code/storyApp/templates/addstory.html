@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block content%}
+{% for story in stories%}  
+
 <div class="container-fluid " id="fullwidth-add_storypage">
     {% with messages = get_flashed_messages(with_categories=true) %}
              {% if messages %}
@@ -18,9 +20,9 @@
                 {% endfor%}
              {% endif%}
         {% endwith %}
-    
+         
     <h2 class="text-center fw-semibold  mb-4">Add story</h2>
-        <form method="post" class=" border p-4 rounded shadow">
+        <form method="post" class=" border p-4 rounded shadow" enctype='multipart/form-data'>
             {{ addstory_form.hidden_tag() }}
 
             {{ addstory_form.title.label() }}
@@ -42,8 +44,11 @@
             {{ addstory_form.image.label() }}
             {{ addstory_form.image(class="form-control" , placeholder='image') }}
 
-            {{ addstory_form.submit(class="btn btn-block btn-lg  btn-primary mt-4",id="fullwidth-btn") }}
+            {{ addstory_form.submit(class="btn btn-block btn-lg  btn-primary mt-4",id="addstory") }}
+
+            <input class="btn btn-block btn-lg  btn-primary" id="addstory" name="addstory" type="hidden" value="{{story.title}}"> 
         </form>
-    
+        
 </div>
+{% endfor %}
 {% endblock %}
