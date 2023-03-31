@@ -7,21 +7,22 @@
 {% endblock %}
 
 {% block content%}
-{% for story in stories%}  
+ 
 
 <div class="container-fluid " id="fullwidth-add_storypage">
+    
+         
+    <h2 class="text-center fw-semibold  mb-4">Add story</h2>
     {% with messages = get_flashed_messages(with_categories=true) %}
              {% if messages %}
                 {% for category, message in messages %}
-                    <div class="form-alert alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                      <strong>Sorry!! </strong>{{message}}
+                    <div class="form-alert alert alert-{{ category }} mt-4 alert-dismissible fade show d-flex justify-content-center" role="alert">
+                      <p><strong>Sorry!! </strong>{{message}}</p> <a class="nav-link active text-decoration-underline text-primary ms-3" aria-current="page" href="{{url_for('login_page')}}">Login</a>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 {% endfor%}
              {% endif%}
         {% endwith %}
-         
-    <h2 class="text-center fw-semibold  mb-4">Add story</h2>
         <form method="post" class=" border p-4 rounded shadow" enctype='multipart/form-data'>
             {{ addstory_form.hidden_tag() }}
 
@@ -46,9 +47,9 @@
 
             {{ addstory_form.submit(class="btn btn-block btn-lg  btn-primary mt-4",id="addstory") }}
 
-            <input class="btn btn-block btn-lg  btn-primary" id="addstory" name="addstory" type="hidden" value="{{story.title}}"> 
+            <input class="btn btn-block btn-lg  btn-primary" id="addstory" name="addstory" type="hidden" value="addstory"> 
         </form>
         
 </div>
-{% endfor %}
+
 {% endblock %}
