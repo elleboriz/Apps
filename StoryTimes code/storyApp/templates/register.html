@@ -9,30 +9,33 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
              {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <div class="form-alert alert alert-{{ category }} alert-dismissible fade show" role="alert">
                       <strong>Oops </strong>{{message}}
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 {% endfor%}
              {% endif%}
         {% endwith %}
-        <h2 class="text-center fw-semibold  mb-4">Signup</h2>
-        <form method="post" class="form-register border p-4 rounded shadow">
-            {{ form.hidden_tag() }}
+        <div class="form-div">
+            <h2 class="text-center fw-semibold  mb-4">Signup</h2>
+            <form method="post" class="form-register border p-4 rounded shadow">
+                {{ form.hidden_tag() }}
 
-            {{ form.username.label() }}
-            {{ form.username(class="form-control" , placeholder='Enter a username') }}
+                {{ form.username.label() }}
+                {{ form.username(class="form-control" , placeholder='Enter a username') }}
 
-            {{form.email.label() }}
-            {{ form.email(class="form-control" , placeholder='Enter your Email') }}
+                {{form.email.label() }}
+                {{ form.email(class="form-control" , placeholder='Enter your Email') }}
 
-            {{form.password.label() }}
-            {{ form.password(class="form-control" , placeholder='Enter your Password') }}
+                {{form.password.label() }}
+                {{ form.password(class="form-control" , placeholder='Enter your Password') }}
 
-            {{form.password_confirm.label() }}
-            {{ form.password_confirm(class="form-control" , placeholder='Confirm your Password') }}
+                {{form.password_confirm.label() }}
+                {{ form.password_confirm(class="form-control" , placeholder='Confirm your Password') }}
 
-            {{form.submit(class="btn btn-block btn-lg  btn-primary",id="register-btn")  }}
-        </form>
+                {{form.submit(class="btn btn-block btn-lg  btn-primary",id="fullwidth-btn")  }}
+                
+            </form>
+        </div>
     </div>
 {% endblock %}
