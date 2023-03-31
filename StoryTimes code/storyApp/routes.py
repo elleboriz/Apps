@@ -38,7 +38,7 @@ def story_page():
     
     
     stories = Story.query.all()
-    print(True)
+    
     return render_template("stories.html",stories = stories , like=like, deslike=deslike , addstory_form=addstory_form)
 
 
@@ -105,10 +105,10 @@ def addstory():
     stories = Story.query.all() 
     addstory_form = Add_storyForm()
     
-    if addstory_form.validate_on_submit() and request.method == 'POST' : 
-        if not current_user.id:
-            flash('You are not Logged in , Login in Other to AddStory')
-            return redirect(url_for('login_page'))
+    if request.method == 'POST' : 
+        if not current_user.is_authenticated:
+            flash('You are not Logged in , Login in Other to AddStory' , category='danger')
+            
         
         else:
             file = request.files['image']
