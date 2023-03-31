@@ -40,11 +40,11 @@ class Story(db.Model):
     img_name = db.Column(db.String() ,nullable=True)
     mimetype = db.Column(db.String() ,nullable=True)
 
- 
-    
     
     def addlike(self):
         self.likes=self.likes+1
 
+
     def __repr__(self):
         return f"Story {self.title}"
+    
