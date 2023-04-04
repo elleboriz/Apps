@@ -3,7 +3,7 @@ from flask import render_template ,  flash ,redirect ,url_for ,request
 from flask_login import login_user , logout_user  ,current_user
 from storyApp.models import Story ,User 
 from storyApp.forms import RegistrationForm , LoginForm ,LikeForm , DeslikeForm ,Add_storyForm
-from storyApp.special_func import  Route_func
+from storyApp.special_func import  Routes_func 
 
 
 @app.route("/",methods=["GET", "POST"])
@@ -13,7 +13,7 @@ def home_page():
     addstory_form = Add_storyForm()
     if addstory_form.validate_on_submit() :
         if current_user.is_authenticated:
-            Route_func.add_story(addstory_form)
+            Routes_func.add_story(addstory_form)
             flash('New Post Added', category='info')
             return redirect(url_for('story_page')) 
 
@@ -34,7 +34,7 @@ def story_page():
     
     if addstory_form.validate_on_submit() :
         if current_user.is_authenticated:
-            Route_func.add_story(addstory_form)
+            Routes_func.add_story(addstory_form)
             flash('New Post Added', category='info')
             return redirect(url_for('story_page')) 
         else:
@@ -68,11 +68,8 @@ def register_page():
         
         #login new registered user after registration and redirect to story page 
         
-        attempted_user = User.query.filter_by(username = form.username.data).first()
-        if attempted_user and attempted_user.check_password_match(password_to_check = form.password.data):
-            login_user(attempted_user)
-            flash("Account created succesfully ", category='success')
-            return redirect(url_for('story_page'))
+        Routes_func.loginto_account(form)
+        return redirect(url_for('story_page'))
 
     if form.errors :
         for error_msg in form.errors.values():
@@ -85,17 +82,9 @@ def login_page():
     form = LoginForm()
     
     if form.validate_on_submit() and request.method == "POST" :
+        Routes_func.loginto_account(form)
+        return redirect(url_for('story_page'))
         
-        #"""verify that username in database by trying to query it """
-        #  veryfy password of user using (check_password_match)function in models.py created  with bycrpt parameters
-        attempted_user = User.query.filter_by(username = form.username.data).first()
-        if attempted_user and attempted_user.check_password_match(password_to_check = form.password.data):
-            login_user(attempted_user)
-            flash(f"welcome  {attempted_user.username}", category='info')
-            return redirect(url_for('story_page'))
-
-        else:
-            flash(f'incorrect Username or Password', category="danger")
     if form.errors :
         for error_msg in form.errors.values():
             flash(f"{error_msg[0]}", category='danger')
@@ -118,7 +107,7 @@ def addstory():
       
     if request.method == 'POST' :
         if current_user.is_authenticated:
-            Route_func.add_story(addstory_form)
+            Routes_func.add_story(addstory_form)
             flash('New Post Added', category='info')
             return redirect(url_for('story_page')) 
         else:
