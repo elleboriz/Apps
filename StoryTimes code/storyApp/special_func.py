@@ -1,7 +1,7 @@
 from storyApp import app
 from flask import request , flash ,redirect ,url_for
-from storyApp.models import Story 
-from flask_login import current_user
+from storyApp.models import Story ,User
+from flask_login import current_user , login_user
 from storyApp import db , ALLOWED_EXTENSIONS
 from werkzeug.utils import secure_filename
 from os import path
@@ -13,7 +13,7 @@ class SPECIAL_FUNC():
         return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
     
-class Route_func():
+class Routes_func():
     def add_story(addstory_form):
         if not current_user.is_authenticated:
             flash('You are not Logged in , Login in Other to AddStory' , category='danger')
@@ -62,5 +62,18 @@ class Route_func():
                     new_story_obj.uploaded_by = current_user.id
                     db.session.commit()
                     
-                    
-       
+    def loginto_account(form):
+        
+        #"""verify that username in database by trying to query it """
+        #  veryfy password of user using (check_password_match)function in models.py created  with bycrpt parameters
+        
+        
+        attempted_user = User.query.filter_by(username = form.username.data).first()
+        if attempted_user and attempted_user.check_password_match(password_to_check = form.password.data):
+            login_user(attempted_user)
+            flash(f"welcome  {attempted_user.username}", category='info')
+            
+
+        else:
+            flash(f'incorrect Username or Password', category="danger")              
+        
