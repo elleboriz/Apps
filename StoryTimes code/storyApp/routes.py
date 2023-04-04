@@ -1,44 +1,53 @@
 from storyApp import app , db 
 from flask import render_template ,  flash ,redirect ,url_for ,request 
-from flask_login import login_user , logout_user  
+from flask_login import login_user , logout_user  ,current_user
 from storyApp.models import Story ,User 
 from storyApp.forms import RegistrationForm , LoginForm ,LikeForm , DeslikeForm ,Add_storyForm
 from storyApp.special_func import  Route_func
 
 
-@app.route("/")
+@app.route("/",methods=["GET", "POST"])
 def home_page():
     
-    stories = Story.query.all()
+    
     addstory_form = Add_storyForm()
-    if request.method == "POST" :
-        if addstory_form.validate_on_submit() :
+    if addstory_form.validate_on_submit() :
+        if current_user.is_authenticated:
             Route_func.add_story(addstory_form)
-            redirect(url_for('story_page'))
+            flash('New Post Added', category='info')
+            return redirect(url_for('story_page')) 
 
+    #render Stories
+    stories = Story.query.all()
+    
     return render_template("home.html",stories = stories ,addstory_form=addstory_form)
 
 
 @app.route("/stories", methods=["GET", "POST"])
 def story_page():
-    
-    #impressions on story (like and deslike)
-    
     like = LikeForm()
     deslike = DeslikeForm()
     addstory_form = Add_storyForm()
+    
+    
+    #Add new story from StoryPage
+    
+    if addstory_form.validate_on_submit() :
+        if current_user.is_authenticated:
+            Route_func.add_story(addstory_form)
+            flash('New Post Added', category='info')
+            return redirect(url_for('story_page')) 
+        else:
+            flash('You are not Logged in , Login in Other to AddStory' , category='danger')    
+    
+    
+    #impressions on story (like and deslike)
     if like.validate_on_submit() :        
         pass
     if deslike.validate_on_submit():
         pass
-    if request.method == "POST" :
-        if addstory_form.validate_on_submit() :
-            Route_func.add_story(addstory_form)
-
-            flash('New Post Added', category='success')
-            return redirect(url_for('story_page'))
     
-    
+    #render Stories
     stories = Story.query.all()
     
     return render_template("stories.html",stories = stories , like=like, deslike=deslike , addstory_form=addstory_form)
@@ -62,8 +71,8 @@ def register_page():
         attempted_user = User.query.filter_by(username = form.username.data).first()
         if attempted_user and attempted_user.check_password_match(password_to_check = form.password.data):
             login_user(attempted_user)
-        flash("Account created succesfully ", category='success')
-        return redirect(url_for('story_page'))
+            flash("Account created succesfully ", category='success')
+            return redirect(url_for('story_page'))
 
     if form.errors :
         for error_msg in form.errors.values():
@@ -79,7 +88,6 @@ def login_page():
         
         #"""verify that username in database by trying to query it """
         #  veryfy password of user using (check_password_match)function in models.py created  with bycrpt parameters
-        
         attempted_user = User.query.filter_by(username = form.username.data).first()
         if attempted_user and attempted_user.check_password_match(password_to_check = form.password.data):
             login_user(attempted_user)
@@ -106,12 +114,16 @@ def logout():
 def addstory():
     stories = Story.query.all() 
     addstory_form = Add_storyForm()
+    
       
-    if request.method == 'POST' : 
-        Route_func.add_story(addstory_form)
-        flash('New Post Added', category='success')
-        return redirect(url_for('story_page')) 
-     
+    if request.method == 'POST' :
+        if current_user.is_authenticated:
+            Route_func.add_story(addstory_form)
+            flash('New Post Added', category='info')
+            return redirect(url_for('story_page')) 
+        else:
+            flash('You are not Logged in , Login in Other to AddStory' , category='danger')     
+   
     return render_template('addstory.html', addstory_form=addstory_form , stories=stories)
     
     
