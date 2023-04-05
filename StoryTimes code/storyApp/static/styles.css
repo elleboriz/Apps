@@ -110,10 +110,25 @@ body{
     background-color: var(--thrid-background) ;
 }
 
-
-
-#logout-btn{
-    padding-top: -15px;
+.dropdown-menu{
+    width: 100%;
+}
+.username .dropdown-item{
+    margin-top: 5px;
+    border-bottom: 1px solid var(--primary-color-h);
+    padding-top: 12px;
+}
+.username #logout-btn{
+    color: white;
+    width: 80%;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.username #logout-btn:hover{
+    background-color: var(--primary-color-h) !important;
+    
 }
 /* main  */
 
