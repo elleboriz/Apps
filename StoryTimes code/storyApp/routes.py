@@ -115,4 +115,22 @@ def addstory():
    
     return render_template('addstory.html', addstory_form=addstory_form , stories=stories)
     
-    
+@app.route('/contact')
+def contact():
+    return render_template('contact.html') 
+
+@app.route('/about')
+def about():
+    return render_template('about.html')   
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/mystories')
+def my_stories():
+    return render_template('mystories.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')    
